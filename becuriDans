@@ -1,0 +1,113 @@
+int pin[] = {3, 4, 5, 6, 7};
+int ritm = 300;
+int ritmInvers = 300;
+int ritmDans = 2000;
+int pinAprins[] = {3, 5, 7};
+int pinStins[] = {4, 6};
+int linieStanga = 5;
+
+void setup(){
+  for(int i = 0; i < 5; i++){
+  pinMode(pin[i], OUTPUT);
+  }
+
+  for (int i = 0; i < 3; i++){
+    pinMode(pinAprins[i], OUTPUT);
+  }
+
+  for (int i = 0; i < 2; i++){
+    pinMode(pinStins[i], OUTPUT);
+  }
+}
+
+void loop(){
+  // stanga spre dreapta
+  do {
+  digitalWrite (3, HIGH);
+  delay (ritm);
+  digitalWrite (3, LOW);
+  digitalWrite (4, HIGH);
+  delay (ritm);
+  digitalWrite(4, LOW);
+  digitalWrite(5, HIGH);
+  delay (ritm);
+  digitalWrite(5, LOW);
+  digitalWrite(6, HIGH);
+  delay(ritm);
+  digitalWrite(6, LOW);
+  digitalWrite(7, HIGH);
+  delay(ritm);
+  digitalWrite(7, LOW);
+  ritm -= 50;
+  }
+  while (ritm > 50);
+
+  // dreapta spre stanga
+  
+  if (ritm < 50){
+  do {
+  digitalWrite (7, HIGH);
+  delay (ritmInvers);
+  digitalWrite (7, LOW);
+  digitalWrite (6, HIGH);
+  delay (ritmInvers);
+  digitalWrite(6, LOW);
+  digitalWrite(5, HIGH);
+  delay (ritmInvers);
+  digitalWrite(5, LOW);
+  digitalWrite(4, HIGH);
+  delay(ritmInvers);
+  digitalWrite(4, LOW);
+  digitalWrite(3, HIGH);
+  delay(ritmInvers);
+  digitalWrite(3, LOW);
+  ritmInvers -= 50;
+  }
+  while (ritmInvers > 50);
+  }
+
+  // interior - exterior
+
+  if (ritmInvers < 50) {
+    do {
+
+for (int i = 0; i < 3; i++){
+   digitalWrite(pinAprins[i], HIGH);
+}
+for (int i = 0; i < 2; i++){
+   digitalWrite(pinStins[i], LOW);
+}
+
+delay (ritmDans);
+for (int i = 0; i < 3; i++){
+   digitalWrite(pinAprins[i], LOW);
+}
+for (int i = 0; i < 2; i++){
+   digitalWrite(pinStins[i], HIGH);
+}
+delay (ritmDans);
+
+ritmDans -= 500;
+
+if (ritmDans < 500){
+  do {
+  for (int i = 0; i < 3; i++){
+   digitalWrite(pinAprins[i], HIGH);
+}
+for (int i = 0; i < 2; i++){
+   digitalWrite(pinStins[i], LOW);
+}
+
+delay (300);
+for (int i = 0; i < 3; i++){
+   digitalWrite(pinAprins[i], LOW);
+}
+for (int i = 0; i < 2; i++){
+   digitalWrite(pinStins[i], HIGH);
+}
+delay (300);
+  }while (ritm < 50);
+}
+    }while(ritm <50);
+  }
+}
